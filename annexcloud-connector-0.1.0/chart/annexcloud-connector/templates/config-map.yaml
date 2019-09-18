@@ -10,9 +10,10 @@ data:
   SYSTEM_URL	: {{ .Values.system_url | quote }}
   APPLICATION_NAME: {{ .Values.application_name | quote }}
   PROVIDER_NAME: SAP
-  PRODUCT_NAME: SAP Litmos
+  PRODUCT_NAME: Annex Cloud
   APP_KIND: rest-with-apikey
-  API_DESCRIPTION: "APIs for SAP Litmos"
+  API_DESCRIPTION: "APIs for Annex Cloud"
+  API_SPECIFICATION_URL: https://raw.githubusercontent.com/brendandobbs/annexcloud-connector/master/api-docs/annexcloud.json
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -23,10 +24,6 @@ metadata:
     app: {{ template "bundle.fullname" . }}
     component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
 data:
-  headers.json: |-
-    {
-      "apikey": {{ .Values.apikey | quote }}
-    }
   params.json: |-
     {
       "access_token": {{ .Values.access_token | quote }}
