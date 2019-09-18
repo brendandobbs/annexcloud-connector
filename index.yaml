@@ -3,4 +3,4 @@ entries:
   annexcloud-connector:
     - name: annexcloud-connector
       description: "Annex Cloud Connector"
-      version: 0.0.1
+      version: 0.1.0
