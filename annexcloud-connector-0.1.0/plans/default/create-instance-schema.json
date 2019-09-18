@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "access_token": {
+      "type": "string",
+      "title": "Access Token",
+      "description": "Access Token",
+      "format": "password"
+    },
+    "site_id": {
+      "type": "string",
+      "title": "Site ID",
+      "description": "Site ID"
+    },
+    "application_name": {
+      "type": "string",
+      "title": "Application Name",
+      "description": "The name of the Kyma Application where the APIs should be registered for consumption"
+    }
+  },
+  "required": [
+    "access_token",
+    "site_id"
+  ]
+}

@@ -1,0 +1,9 @@
+docs:
+  - template:
+      displayName: "annexcloud-connector-0.1.0"
+      description: "Annex Cloud Connector documentation"
+      sources:
+        - type: markdown
+          name: docs
+          mode: package
+          filter: (docs/(.*?)\.md$)

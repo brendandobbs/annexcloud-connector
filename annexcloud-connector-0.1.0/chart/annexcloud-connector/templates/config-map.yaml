@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
+data:
+  SYSTEM_URL	: {{ .Values.system_url | quote }}
+  APPLICATION_NAME: {{ .Values.application_name | quote }}
+  PROVIDER_NAME: SAP
+  PRODUCT_NAME: SAP Litmos
+  APP_KIND: rest-with-apikey
+  API_DESCRIPTION: "APIs for SAP Litmos"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}-api
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ template "bundle.fullname" . }}
+    component: {{ template "bundle.fullname" . }}-{{ .Values.apiRegistrationJobName }}
+data:
+  headers.json: |-
+    {
+      "apikey": {{ .Values.apikey | quote }}
+    }
+  params.json: |-
+    {
+      "access_token": {{ .Values.access_token | quote }}
+    }
+  apis.json: |-
+    []

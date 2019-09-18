@@ -1,0 +1,166 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Service to expose Annex Cloud APIs",
+    "version": "1.0.0",
+    "title": "Annex Cloud APIs"
+  },
+  "tags": [
+    {
+      "name": "annexcloud-api",
+      "description": "Annex Cloud APIs",
+      "externalDocs": {
+        "description": "API to Award custom actions points to Single User",
+        "url": "http://s15.socialannex.net/apiv2/userpoints/"
+      }
+    }
+  ],
+  "paths": {
+    "/{user_email}": {
+      "post": {
+        "tags": [
+          "API to Award custom actions points to Single Usere"
+        ],
+        "summary": "API to Award custom actions points to Single User",
+        "description": "API to Award custom actions points to Single User",
+        "operationId": "awardPoints",
+        "parameters": [
+          {
+            "name": "user_email",
+            "in": "path",
+            "description": "return results in JSON format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json"
+              ]
+            }
+          },
+          {
+            "name": "action_id",
+            "in": "param",
+            "description": "Action ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "action_use",
+            "in": "param",
+            "description": "Action Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "earned_points",
+            "in": "param",
+            "description": "Earned Points",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Course"
+              }
+            }
+          },
+          "500": {
+            "description": "The server encountered an error processing the request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemas": {
+      "api_key": {
+        "type": "apiKey",
+        "name": "apikey",
+        "in": "header"
+      }
+    },
+    "schemas": {
+      "Course": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "string"
+          },
+          "Code": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Active": {
+            "type": "boolean"
+          },
+          "Complete": {
+            "type": "boolean"
+          },
+          "PercentageComplete": {
+            "type": "number",
+            "format": "double"
+          },
+          "AssignedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "StartDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "DateCompleted": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "UpToDate": {
+            "type": "boolean"
+          },
+          "Overdue": {
+            "type": "boolean"
+          },
+          "CompliantTill": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "IsLearningPath": {
+            "type": "boolean"
+          },
+          "CourseCreatedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "CourseCreator": {
+            "type": "string"
+          },
+          "OriginalId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "ResultId": {
+            "type": "string"
+          },
+          "AccessTillDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "xml": {
+          "name": "Course"
+        }
+      }
+    }
+  }
+}
