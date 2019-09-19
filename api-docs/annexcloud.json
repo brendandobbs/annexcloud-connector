@@ -64,13 +64,7 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/Course"
-              }
-            }
+            "description": "successful operation"
           },
           "500": {
             "description": "The server encountered an error processing the request"
