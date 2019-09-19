@@ -16,10 +16,10 @@
     }
   ],
   "paths": {
-    "/{user_email}": {
+    "/": {
       "post": {
         "tags": [
-          "API to Award custom actions points to Single Usere"
+          "API to Award custom actions points to Single User"
         ],
         "summary": "API to Award custom actions points to Single User",
         "description": "API to Award custom actions points to Single User",
@@ -31,10 +31,7 @@
             "description": "return results in JSON format",
             "required": false,
             "schema": {
-              "type": "string",
-              "enum": [
-                "json"
-              ]
+              "type": "string"
             }
           },
           {
@@ -88,78 +85,6 @@
         "type": "apiKey",
         "name": "apikey",
         "in": "header"
-      }
-    },
-    "schemas": {
-      "Course": {
-        "type": "object",
-        "properties": {
-          "Id": {
-            "type": "string"
-          },
-          "Code": {
-            "type": "string"
-          },
-          "Name": {
-            "type": "string"
-          },
-          "Active": {
-            "type": "boolean"
-          },
-          "Complete": {
-            "type": "boolean"
-          },
-          "PercentageComplete": {
-            "type": "number",
-            "format": "double"
-          },
-          "AssignedDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "StartDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "DateCompleted": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "UpToDate": {
-            "type": "boolean"
-          },
-          "Overdue": {
-            "type": "boolean"
-          },
-          "CompliantTill": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "IsLearningPath": {
-            "type": "boolean"
-          },
-          "CourseCreatedDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "CourseCreator": {
-            "type": "string"
-          },
-          "OriginalId": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "ResultId": {
-            "type": "string"
-          },
-          "AccessTillDate": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "xml": {
-          "name": "Course"
-        }
       }
     }
   }
