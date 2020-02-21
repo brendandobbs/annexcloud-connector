@@ -5,17 +5,17 @@
      "image": {
         "type": "string",
         "title": "Image",
-        "description": "e.g. docker.io/brendandobbs/ycommerce:1905.10",
+        "description": "e.g. docker.io/brendandobbs/ycommerce:1905.10"
      },
     "license": {
       "type": "string",
       "title": "License",
-      "description": "License (see documentation for instructions)",
+      "description": "License (see documentation for instructions)"
     },
     "kymaCluster": {
          "type": "string",
          "title": "Cluster Hostname",
-         "description": "e.g. c4f-demo5.cluster.extend.cx.cloud.sap",
+         "description": "e.g. c4f-demo5.cluster.extend.cx.cloud.sap"
        }
   },
   "required": [
