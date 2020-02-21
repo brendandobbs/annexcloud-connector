@@ -7,11 +7,6 @@
         "title": "Image",
         "description": "e.g. docker.io/brendandobbs/ycommerce:1905.10"
      },
-    "license": {
-      "type": "string",
-      "title": "License",
-      "description": "License (see documentation for instructions)"
-    },
     "kymaCluster": {
          "type": "string",
          "title": "Cluster Hostname",
