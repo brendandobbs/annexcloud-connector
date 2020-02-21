@@ -2,7 +2,7 @@ name: sapcommerce-connector
 version: 0.1.0
 description: "Installs a standalone instance of SAP Commerce"
 id: faebbe18-0a84-11e5-ab14-d663bd873e56
-displayName: "SAP Commerce"
+displayName: "SAP Commerce Installer"
 tags: sap,commerce
 labels: 
   preview: "true"
