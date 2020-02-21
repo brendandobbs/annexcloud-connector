@@ -26,6 +26,7 @@ spec:
            httpGet:
              path: /yacceleratorstorefront/?site=electronics
              port: 9002
+             scheme: HTTPS
            initialDelaySeconds: 7200
            periodSeconds: 10
         command: 
