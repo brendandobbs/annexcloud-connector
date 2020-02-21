@@ -1,0 +1,27 @@
+image: docker.io/brendandobbs/commerce:1905.10
+imagePullPolicy: IfNotPresent
+kymaCluster: c4f-demo5.cluster.extend.cx.cloud.sap 
+
+hybrisDataDir: "data"
+
+persistence:
+  enabled: true
+  accessMode: ReadWriteOnce
+  size: 10Gi
+# use 'default' for AKS and 'standard' for GKE
+  storageClass: default
+  
+resources:
+  limits:
+    memory: 4Gi
+    cpu: 1 
+  requests:
+    memory: 4Gi
+    cpu: 1
+
+enabled:
+  electronics: true
+  apparel: false
+  powertools: false
+  
+adminPassword: nimda

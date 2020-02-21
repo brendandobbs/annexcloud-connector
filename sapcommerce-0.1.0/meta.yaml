@@ -1,0 +1,14 @@
+name: sapcommerce-connector
+version: 0.1.0
+description: "Installs a standalone instance of SAP Commerce"
+id: faebbe18-0a84-11e5-ab14-d663bd873e56
+displayName: "SAP Commerce"
+tags: sap,commerce
+labels: 
+  preview: "true"
+providerDisplayName: SAP
+longDescription: "Installs a standalone instance of SAP Commerce with all components (Tomcat, Solr, Database) running in a single container to simplify the setup. This should only be used for demos and PoCs. The container requires at least 5GB of memory so ensure you have resources your cluster. You might need to add an additional node to the cluster."
+documentationURL:
+bindable: false
+provisionOnlyOnce: true
+imageUrl: https://github.com/brendandobbs/annexcloud-connector/raw/master/logos/sapcommerce.png

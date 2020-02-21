@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hybris-config
+data:
+  local.properties: |
+    googleApiKey=
+    {{ if .Values.enabled.electronics  }}
+    website.electronics.http=http\://electronics.{{ .Values.kymaCluster }}/yacceleratorstorefront
+    website.electronics.https=https\://electronics.{{ .Values.kymaCluster }}/yacceleratorstorefront
+    {{ end }}
+    {{ if .Values.enabled.apparel }}
+    website.apparel-de.http=http\://apparel-de.{{ .Values.kymaCluster }}/yacceleratorstorefront
+    website.apparel-de.https=https\://apparel-de.{{ .Values.kymaCluster }}/yacceleratorstorefront
+    website.apparel-uk.http=http\://apparel-uk.{{ .Values.kymaCluster }}/yacceleratorstorefront
+    website.apparel-uk.https=https\://apparel-uk.{{ .Values.kymaCluster }}/yacceleratorstorefront
+    {{ end }}
+    {{ if .Values.enabled.powertools }}
+    website.powertools.http=http\://powertools.{{ .Values.kymaCluster }}/yb2bacceleratorstorefront
+    website.powertools.https=https\://powertools.{{ .Values.kymaCluster }}/yb2bacceleratorstorefront
+    {{ end }}
+    setup.siteoverride=true
+    
+    apiregistryservices.events.exporting=true
+    ccv2.services.api.url.0=https\://backoffice.{{ .Values.kymaCluster }}
+    
+    impex.import.workers=4
+    catalog.sync.workers=4
+
+    log4j2.logger.solrfacetsearch.name = de.hybris.platform.solrfacetsearch
+    log4j2.logger.solrfacetsearch.level = warn
+    log4j2.logger.solrfacetsearch.appenderRef.stdout.ref = STDOUT
+
+    log4j2.logger.servicelayerjob.name = de.hybris.platform.servicelayer.internal.jalo.ServicelayerJob
+    log4j2.logger.servicelayerjob.level = warn
+    log4j2.logger.servicelayerjob.appenderRef.stdout.ref = STDOUT
+
+    log4j2.logger.servicelayerjalo.name = de.hybris.platform.servicelayer.internal.jalo
+    log4j2.logger.servicelayerjalo.level = warn
+    log4j2.logger.servicelayerjalo.appenderRef.stdout.ref = STDOUT
+
+
+    tomcat.generaloptions=-Djava.locale.providers=COMPAT,CLDR -Xmx4G -ea -Dcatalina.base=%CATALINA_BASE% -Dcatalina.home=%CATALINA_HOME% -Dfile.encoding=UTF-8 -Djava.util.logging.config.file=jdk_logging.properties -Djava.io.tmpdir="/home/hybris/hybris/temp/hybris"
+
+    standalone.javaoptions=-Xmx2G
+
+    regioncache.entityregion.size=200000
+
+    installed.tenants=
+
+    corsfilter.ycommercewebservices.allowedOrigins=*
+
+    HYBRIS_DATA_DIR=/home/hybris/hybris-data/{{ .Values.hybrisDataDir }}
+    

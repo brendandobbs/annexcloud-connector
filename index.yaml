@@ -1,6 +1,10 @@
 apiVersion: v1
 entries:
-  annexcloud-connector:
-    - name: annexcloud-connector
-      description: "Annex Cloud Connector"
-      version: 0.1.0
+  #annexcloud-connector:
+   # - name: annexcloud-connector
+    #  description: "Annex Cloud Connector"
+     # version: 0.1.0
+  sapcommerce:
+  - name: sapcommerce
+    description: "SAP Commerce"
+    version: 0.1.0

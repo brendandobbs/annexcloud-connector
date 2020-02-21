@@ -1,0 +1,10 @@
+name: sap-commerce-standalone
+version: 0.0.1
+appVersion: 1905
+description: SAP Commerce
+keywords:
+- sap-commerce
+sources:
+maintainers:
+- name: brendandobbs
+engine: gotpl

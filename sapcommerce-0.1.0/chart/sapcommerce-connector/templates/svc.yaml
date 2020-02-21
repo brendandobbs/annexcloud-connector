@@ -1,0 +1,146 @@
+{{ if .Values.enabled.electronics  }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "fullname" . }}-electronics-svc
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }} 
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 9001
+  - name: https
+    port: 9002
+  selector:
+    app: {{ template "fullname" . }}
+---
+apiVersion: gateway.kyma-project.io/v1alpha2
+kind: Api
+metadata:
+  name: {{ .Release.Name }}-electronics
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }} 
+spec:
+    authentication: []
+    hostname: electronics
+    service:
+      name: {{ template "fullname" . }}-electronics-svc
+      port: 9001
+---
+{{ end }}
+{{ if .Values.enabled.apparel }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "fullname" . }}-apparel-svc
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }} 
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 9001
+  - name: https
+    port: 9002
+  selector:
+    app: {{ template "fullname" . }}
+---
+apiVersion: gateway.kyma-project.io/v1alpha2
+kind: Api
+metadata:
+  name: {{ .Release.Name }}-apparel
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }} 
+spec:
+    authentication: []
+    hostname: apparel-uk
+    service:
+      name: {{ template "fullname" . }}-apparel-svc
+      port: 9001
+---
+{{ end }}
+{{ if .Values.enabled.powertools }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "fullname" . }}-powertools-svc
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }} 
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 9001
+  - name: https
+    port: 9002
+  selector:
+    app: {{ template "fullname" . }}
+---
+apiVersion: gateway.kyma-project.io/v1alpha2
+kind: Api
+metadata:
+  name: {{ .Release.Name }}-powertools
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }} 
+spec:
+    authentication: []
+    hostname: powertools
+    service:
+      name: {{ template "fullname" . }}
+      port: 9001
+---
+{{ end }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "fullname" . }}-backoffice-svc
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }} 
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 9001
+  - name: https
+    port: 9002
+  selector:
+    app: {{ template "fullname" . }}
+---
+apiVersion: gateway.kyma-project.io/v1alpha2
+kind: Api
+metadata:
+  name: {{ .Release.Name }}-backoffice
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }} 
+spec:
+    authentication: []
+    hostname: backoffice
+    service:
+      name: {{ template "fullname" . }}-backoffice-svc
+      port: 9001
+---

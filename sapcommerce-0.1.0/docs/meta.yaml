@@ -1,0 +1,9 @@
+docs:
+  - template:
+      displayName: "commerce-0.1.0"
+      description: "SAP Commerce Documentation"
+      sources:
+        - type: markdown
+          name: docs
+          mode: package
+          filter: (docs/(.*?)\.md$)

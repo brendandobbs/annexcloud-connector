@@ -1,0 +1,87 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}
+        release: {{ .Release.Name }}
+      annotations:
+        sidecar.istio.io/inject: "true"
+    spec:
+      containers:
+      - image: {{ .Values.image }}
+        imagePullPolicy: {{ default "" .Values.imagePullPolicy | quote }}
+        name: commerce
+        livenessProbe:
+           httpGet:
+             path: /yacceleratorstorefront/?site=electronics
+             port: 9002
+           initialDelaySeconds: 7200
+           periodSeconds: 10
+        command: 
+            - bash
+            - "-c"
+            - |
+             whoami
+             if [ ! -d /home/hybris/hybris-data/data ]; then
+                cd /home/hybris/
+                ls -la
+                echo 'unziping data.zip to /home/hybris/hybris-data/data'
+                unzip data.zip -d ./hybris-data 
+                rm data.zip   
+                echo 'deployment.api.endpoint=https://{{ .Release.Name }}.{{ .Values.kymaCluster }}' >> /home/hybris/hybris/config/local.properties
+                echo 'HYBRIS_DATA_DIR=/home/hybris/hybris-data/{{ .Values.hybrisDataDir }}' >> /home/hybris/hybris/config/local.properties
+                echo 'initialpassword.admin={{ .Values.adminPassword }}' >> /home/hybris/hybris/config/local.properties
+                cd /home/hybris/hybris/bin/platform
+                . ./setantenv.sh
+                ant all
+             else
+                cd /home/hybris/hybris/bin/platform
+                . ./setantenv.sh
+                ant all
+             fi
+             ./license.sh -install /home/hybris/hybris/config/CPS.txt
+             ./hybrisserver.sh
+        ports:
+        - containerPort: 9001
+          name: "http"
+        - containerPort: 9002
+          name: "https"
+        volumeMounts:
+          - name: hybris-data
+            mountPath: /home/hybris/hybris-data
+          - name: hybris-local-config
+            subPath: local.properties
+            mountPath: /home/hybris/hybris/config/local.properties
+          - name: hybris-local-license
+            subPath: CPS.txt
+            mountPath: /home/hybris/hybris/config/CPS.txt
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+      securityContext:
+        fsGroup: 999
+      volumes:
+      - name: hybris-local-config
+        configMap:
+          name: hybris-config
+      - name: hybris-local-license
+        configMap:
+          name: hybris-license 
+      - name: hybris-data
+      {{- if .Values.persistence.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ template "fullname" . }}
+      {{- else }}
+        emptyDir: {}
+      {{- end -}}
+        
