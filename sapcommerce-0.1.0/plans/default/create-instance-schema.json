@@ -14,7 +14,7 @@
        }
   },
   "required": [
-    "license",
+    "image",
     "kymaCluster"
   ]
 }
