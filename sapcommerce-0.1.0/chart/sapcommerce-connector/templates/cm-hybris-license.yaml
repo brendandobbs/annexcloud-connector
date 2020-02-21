@@ -1,7 +1,7 @@
 apiVersion: v1
 data:
   CPS.txt: |
-  {{ .Values.license }}
+  "{{ .Values.license }}"
 kind: ConfigMap
 metadata:
   name: hybris-license
