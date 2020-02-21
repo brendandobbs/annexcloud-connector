@@ -5,7 +5,7 @@
      "image": {
         "type": "string",
         "title": "Image",
-        "description": "e.g. docker.io/brendandobbs/ycommerce:1905.10"
+        "description": "e.g. docker.io/brendandobbs/commerce:1905.10"
      },
     "kymaCluster": {
          "type": "string",
